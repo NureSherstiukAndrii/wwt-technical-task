@@ -3,5 +3,9 @@
 	"filter": "Filter",
 	"content": "Content",
 	"apply": "Apply",
-	"clearAllParameters": "Clear all parameters"
+	"clearAllParameters": "Clear all parameters",
+	"confirmQuestion": "Do you want to apply new filter",
+	"confirmOld": "Use old filter",
+	"confirmNew": "Apply new filter",
+	"noFilter": "No filters available"
 }
