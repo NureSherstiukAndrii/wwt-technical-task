@@ -25,7 +25,6 @@ export const App = () => {
 
 		const data = await response.json()
 		setFilters(data.filterItems)
-		console.log(data)
 
 		return data
 	}

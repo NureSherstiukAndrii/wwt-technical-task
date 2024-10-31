@@ -31,6 +31,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
 	const { t } = useTranslation('filter')
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const allFilters = useFiltersStore(state => state.allFilters)
+	const resetFilters = useFiltersStore(state => state.resetSelectedFilters)
 
 	return (
 		<>
@@ -94,6 +95,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
 							_hover="none"
 							position="absolute"
 							right="0"
+							onClick={resetFilters}
 						>
 							{t('clearAllParameters')}
 						</Button>
