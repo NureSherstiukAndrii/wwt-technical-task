@@ -1,1 +1,7 @@
-{}
+{
+	"openFilters": "Open Filters",
+	"filter": "Filter",
+	"content": "Content",
+	"apply": "Apply",
+	"clearAllParameters": "Clear all parameters"
+}
