@@ -13,11 +13,15 @@ import {
 interface ConfirmModalProps {
 	isOpen: boolean
 	onClose: () => void
+	onConfirm: () => void
+	onDiscard: () => void
 }
 
 export const ConfirmModal: React.FC<ConfirmModalProps> = ({
 	isOpen,
-	onClose
+	onClose,
+	onConfirm,
+	onDiscard
 }): JSX.Element => {
 	const { t } = useTranslation('filter')
 
@@ -45,7 +49,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
 					gap={4}
 				>
 					<Button
-						onClick={onClose}
+						onClick={onDiscard}
 						minW={180}
 						bg="white"
 						color="#474747"
@@ -54,6 +58,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
 						{t('confirmOld')}
 					</Button>
 					<Button
+						onClick={onConfirm}
 						minW={180}
 						bg="#FF5F00"
 						color="white"

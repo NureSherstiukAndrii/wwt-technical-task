@@ -31,13 +31,28 @@ export const FilterModal: React.FC<FilterModalProps> = ({
 	const { t } = useTranslation('filter')
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const allFilters = useFiltersStore(state => state.allFilters)
-	const resetFilters = useFiltersStore(state => state.resetSelectedFilters)
+	const resetFilters = useFiltersStore(state => state.resetFilters)
+	const confirmFilters = useFiltersStore(state => state.confirmFilters)
+	const discardFilters = useFiltersStore(state => state.discardFilters)
+
+	const handleConfirmNew = () => {
+		confirmFilters()
+		onClose()
+		onCloseModal()
+	}
+
+	const handleConfirmOld = () => {
+		discardFilters()
+		onClose()
+	}
 
 	return (
 		<>
 			<ConfirmModal
 				isOpen={isOpen}
 				onClose={onClose}
+				onConfirm={handleConfirmNew}
+				onDiscard={handleConfirmOld}
 			/>
 
 			<Modal

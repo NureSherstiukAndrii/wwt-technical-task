@@ -15,9 +15,12 @@ interface Filter {
 interface FiltersData {
 	allFilters: Filter[] | null
 	selectedFilters: Record<string, FilterChooseOption[]>
+	tempSelectedFilters: Record<string, FilterChooseOption[]>
 	setAllFilters: (filters: SearchRequestFilter) => void
-	updateSelectedFilters: (id: string, options: FilterChooseOption[]) => void
-	resetSelectedFilters: () => void
+	updateTempSelectedFilters: (id: string, options: FilterChooseOption[]) => void
+	resetFilters: () => void
+	confirmFilters: () => void
+	discardFilters: () => void
 }
 
 export const useFiltersStore = create<FiltersData>()(
@@ -26,15 +29,25 @@ export const useFiltersStore = create<FiltersData>()(
 			set => ({
 				allFilters: null,
 				selectedFilters: {},
+				tempSelectedFilters: {},
 				setAllFilters: data => set({ allFilters: data }),
-				updateSelectedFilters: (id, options) =>
+				updateTempSelectedFilters: (id, options) =>
 					set(state => ({
-						selectedFilters: {
-							...state.selectedFilters,
+						tempSelectedFilters: {
+							...state.tempSelectedFilters,
 							[id]: options
 						}
 					})),
-				resetSelectedFilters: () => set({ selectedFilters: {} })
+				resetFilters: () => {
+					set({ selectedFilters: {} })
+					set({ tempSelectedFilters: {} })
+				},
+				confirmFilters: () =>
+					set(state => ({ selectedFilters: state.tempSelectedFilters })),
+				discardFilters: () =>
+					set(state => ({
+						tempSelectedFilters: state.selectedFilters
+					}))
 			}),
 			{ name: 'filtersStore' }
 		)

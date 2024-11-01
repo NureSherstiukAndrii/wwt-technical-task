@@ -5,18 +5,18 @@ import { FilterChoose } from '@api/types/Filter'
 import { useFiltersStore } from '@store/store'
 
 export const FilterItem: React.FC<FilterChoose> = ({ id, name, options }) => {
-	const updateSelectedFilters = useFiltersStore(
-		state => state.updateSelectedFilters
+	const updateTempSelectedFilters = useFiltersStore(
+		state => state.updateTempSelectedFilters
 	)
 	const selectedOptions = useFiltersStore(
-		state => state.selectedFilters[id] || []
+		state => state.tempSelectedFilters[id] || []
 	)
 
 	const handleCheckboxChange = (optionId: string, isChecked: boolean) => {
 		const updatedOptions = isChecked
 			? [...selectedOptions, { id: optionId, name }]
 			: selectedOptions.filter(option => option.id !== optionId)
-		updateSelectedFilters(id, updatedOptions)
+		updateTempSelectedFilters(id, updatedOptions)
 	}
 
 	return (
