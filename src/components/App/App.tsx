@@ -16,6 +16,7 @@ export const App = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { t } = useTranslation('filter')
 	const setFilters = useFiltersStore(state => state.setAllFilters)
+	const selectedFilters = useFiltersStore(state => state.selectedFilters)
 
 	const fetchFilterData = async () => {
 		const response = await fetch('./filterData.json')
@@ -48,6 +49,10 @@ export const App = () => {
 			mx="auto"
 			minH="100dvh"
 		>
+			<FilterModal
+				isModalOpen={isOpen}
+				onCloseModal={onClose}
+			/>
 			<AbsoluteCenter>
 				<Button
 					size="lg"
@@ -60,10 +65,10 @@ export const App = () => {
 				</Button>
 			</AbsoluteCenter>
 
-			<FilterModal
-				isModalOpen={isOpen}
-				onCloseModal={onClose}
-			/>
+			<Box>
+				<h2>{t('selectedFilters')}</h2>
+				<Box>{JSON.stringify(selectedFilters)}</Box>
+			</Box>
 		</Box>
 	)
 }

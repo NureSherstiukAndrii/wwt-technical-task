@@ -2,7 +2,6 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
 import { FilterChooseOption } from '@api/types/Filter'
-import { SearchRequestFilter } from '@api/types/SearchRequest/SearchRequestFilter'
 
 interface Filter {
 	id: string
@@ -16,7 +15,7 @@ interface FiltersData {
 	allFilters: Filter[] | null
 	selectedFilters: Record<string, FilterChooseOption[]>
 	tempSelectedFilters: Record<string, FilterChooseOption[]>
-	setAllFilters: (filters: SearchRequestFilter) => void
+	setAllFilters: (filters: Filter[]) => void
 	updateTempSelectedFilters: (id: string, options: FilterChooseOption[]) => void
 	resetFilters: () => void
 	confirmFilters: () => void

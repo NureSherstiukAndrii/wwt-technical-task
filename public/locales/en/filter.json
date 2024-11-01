@@ -7,5 +7,6 @@
 	"confirmQuestion": "Do you want to apply new filter",
 	"confirmOld": "Use old filter",
 	"confirmNew": "Apply new filter",
-	"noFilter": "No filters available"
+	"noFilter": "No filters available",
+	"selectedFilters": "Selected Filters"
 }
