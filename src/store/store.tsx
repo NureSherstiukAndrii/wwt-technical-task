@@ -18,6 +18,7 @@ interface FiltersData {
 	setAllFilters: (filters: Filter[]) => void
 	updateTempSelectedFilters: (id: string, options: FilterChooseOption[]) => void
 	resetFilters: () => void
+	resetTempFilters: () => void
 	confirmFilters: () => void
 	discardFilters: () => void
 }
@@ -39,6 +40,9 @@ export const useFiltersStore = create<FiltersData>()(
 					})),
 				resetFilters: () => {
 					set({ selectedFilters: {} })
+					set({ tempSelectedFilters: {} })
+				},
+				resetTempFilters: () => {
 					set({ tempSelectedFilters: {} })
 				},
 				confirmFilters: () =>

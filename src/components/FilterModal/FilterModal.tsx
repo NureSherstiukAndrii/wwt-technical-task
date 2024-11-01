@@ -34,6 +34,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
 	const resetFilters = useFiltersStore(state => state.resetFilters)
 	const confirmFilters = useFiltersStore(state => state.confirmFilters)
 	const discardFilters = useFiltersStore(state => state.discardFilters)
+	const resetTempFilters = useFiltersStore(state => state.resetTempFilters)
 
 	const handleConfirmNew = () => {
 		confirmFilters()
@@ -62,7 +63,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader>{t('filter')}</ModalHeader>
-					<ModalCloseButton />
+					<ModalCloseButton onClick={resetTempFilters} />
 					<ModalBody
 						display="flex"
 						flexDirection="column"

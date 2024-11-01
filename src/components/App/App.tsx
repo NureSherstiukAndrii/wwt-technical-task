@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -17,6 +18,7 @@ export const App = () => {
 	const { t } = useTranslation('filter')
 	const setFilters = useFiltersStore(state => state.setAllFilters)
 	const selectedFilters = useFiltersStore(state => state.selectedFilters)
+	const resetTempFilters = useFiltersStore(state => state.resetTempFilters)
 
 	const fetchFilterData = async () => {
 		const response = await fetch('./filterData.json')
@@ -34,6 +36,18 @@ export const App = () => {
 		queryKey: ['filterData'],
 		queryFn: fetchFilterData
 	})
+
+	useEffect(() => {
+		const handleBeforeUnload = () => {
+			resetTempFilters()
+		}
+
+		window.addEventListener('beforeunload', handleBeforeUnload)
+
+		return () => {
+			window.removeEventListener('beforeunload', handleBeforeUnload)
+		}
+	}, [resetTempFilters])
 
 	if (isPending) {
 		return <Spinner />
